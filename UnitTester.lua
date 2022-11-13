@@ -1,18 +1,22 @@
 local UnitTester = {}
 
-function UnitTester.DisplayError(testNo, err)
+
+UnitTester.ExpectedError = Enum.Status.Poison --The enum chosen is arbitrary, but we use it as a hacky way to make our own enum by using a deprecated enum
+
+
+function DisplayError(testNo, err)
 	warn("Test "..testNo.." failed! Error occured:", err)
 end
 
 function UnitTester.UnitTestBatch(tests: {{ ["function"]: (...any)->...any, ["expectedOutput"]: any }} )
-	--Input must be an array
+	--Input must be an list
 	
 	local successfulTests = 0
 	
 	for i, test in pairs(tests) do
 		local success, response = xpcall(
 			test["function"], --Function the test uses
-			function(err) UnitTester.DisplayError(i, err) end --Error handler
+			function(err) DisplayError(i, err) end --Error handler
 		)
 		
 		if success then

@@ -39,6 +39,11 @@ local testBatch = {
 
 The first test would succeed whereas the second would raise an error.
 
+The expected output can also be set to `UnitTester.ExpectedError` if the test is expected to raise an error. There is no way to distinguish different errors in Lua, so a test is successful if any error is thrown.
+
+```lua
+["expectedOutput"] = UnitTester.ExpectedError
+```
 
 # How to Use
 
