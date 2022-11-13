@@ -26,7 +26,7 @@ function UnitTester.UnitTestBatch(tests: {{ ["function"]: (...any)->...any, ["ex
 				print("Test "..i.." successful!")
 				successfulTests += 1
 			end
-        elseif response == UnitTester.ExpectedError then
+        elseif test["expectedOutput"] == UnitTester.ExpectedError then
 			successfulTests += 1
 		end
 	end
